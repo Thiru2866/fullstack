@@ -6,6 +6,13 @@ st.set_page_config(
     layout="wide"
 )
 
-html_file = Path("index.html").read_text(encoding="utf-8")
+html_path = Path("index.html")
 
-st.components.v1.html(html_file, height=900, scrolling=True)
+if html_path.exists():
+    st.components.v1.html(
+        html_path.read_text(encoding="utf-8"),
+        height=900,
+        scrolling=True
+    )
+else:
+    st.error("index.html not found")
